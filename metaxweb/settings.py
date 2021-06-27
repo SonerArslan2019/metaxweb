@@ -1,3 +1,7 @@
+import os
+from django.utils.translation import ugettext_lazy as _
+
+
 """
 Django settings for metaxweb project.
 
@@ -27,6 +31,13 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+LANGUAGES = [
+    ('de', _('German')),
+    ('en', _('English')),
+]
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR, 'locale'),
+)
 
 # Application definition
 
@@ -37,6 +48,17 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # 'django.contrib.sitemaps',
+
+    #my app
+    # 'news',
+    # 'gallery',
+    # 'products',
+    # 'root',
+    # 3th
+    # 'ckeditor',
+    # 'django_cleanup',
+
 ]
 
 MIDDLEWARE = [
@@ -47,6 +69,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
 ]
 
 ROOT_URLCONF = 'metaxweb.urls'
@@ -54,8 +77,7 @@ ROOT_URLCONF = 'metaxweb.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates']
-        ,
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -124,3 +146,21 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, 'static')
+# ]
+#
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles/')
+#
+# STATIC_URL = '/staticfiles/'
+#
+#
+# MEDIA_URL = '/media/'
+# MEDIA_ROOT = 'media'
+#
+# try:
+#     from core.local_settings import *
+# except:
+#     pass
+

@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block body %}
+
+<section id="page-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                <div class="page-title">
+                        <h1>{% trans 'Gallery' %} | {% trans 'Automatic Doors' %}</h1><br>
+                        <div class="breadcrumb float-left">
+                                <ul>
+                                    <li><a href="{% url 'home' %}">{% trans 'Home' %}</a>
+                                    </li>
+                                    <li><a href="{% url 'gallery' %}">{% trans 'Gallery' %}</a>
+                                    </li>
+                                    <li class="active"><a href="#">{% trans 'Automatic Doors' %}</a>
+                                    </li>
+                                </ul>
+                            </div>
+                    </div>
+                    </div></div>
+                    <!-- Gallery -->
+                    <div class="row">
+                        <div class="col-md-12">
+
+                        <div class="grid-layout grid-3-columns grid-loaded" data-margin="20" data-item="grid-item" data-lightbox="gallery" style="margin: 0px -20px -20px 0px; position: relative; height: 773.949px;">
+                            {% if LANGUAGE_CODE == "tr" %}
+                            {% for x in all_objects %}
+
+                            <div class="grid-item" style="padding: 0px 20px 20px 0px; position: absolute; left: 753.334px; top: 515.966px;">
+                                {% if x.image %}
+                                <a class="image-hover-zoom" href="{{ x.image.url }}" data-lightbox="gallery-image"><img class="img-fluid" src="{{ x.image.url }}"></a>
+                                {% else %}
+                                <iframe src="https://www.youtube.com/embed/{{ x.video }}" allowfullscreen>
+                                </iframe>
+                                {% endif %}
+                                <small>{{ x.title_tr }}</small>
+                            </div>
+
+                        {% endfor %}
+                        {% else %}
+                        {% for x in all_objects %}
+
+                        <div class="grid-item" style="padding: 0px 20px 20px 0px; position: absolute; left: 753.334px; top: 515.966px;">
+                            {% if x.image %}
+                            <a class="image-hover-zoom" href="{{ x.image.url }}" data-lightbox="gallery-image"><img class="img-fluid" src="{{ x.image.url }}"></a>
+                            {% else %}
+                            <iframe src="https://www.youtube.com/embed/{{ x.video }}" allowfullscreen>
+                            </iframe>
+                            {% endif %}
+                            <small>{{ x.title_en }}</small>
+                        </div>
+
+                    {% endfor %}
+                        {% endif %}
+                    </div>
+</div></div>
+                    <!-- end: Gallery -->
+
+
+                    <div class="row">
+                      <div class="col-md-12 ">
+                          <div class="pagination text-center">
+                              <span class="step-links ">
+                                {% if all_objects.has_previous %}
+                                    <a class="btn btn-outline-primary btn-sm" href="?sayfa=1{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">1</a>
+                                    <a class="btn btn-outline-primary btn-sm" href="?sayfa={{ all_objects.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">{% trans 'Back' %}</a>
+                                {% endif %}
+
+                                <span class="current">
+                                    {% trans 'Page' %} {{ all_objects.number }} / {{ all_objects.paginator.num_pages }}
+                                </span>
+
+                                {% if all_objects.has_next %}
+                                    <a class="btn btn-outline-primary btn-sm" href="?sayfa={{ all_objects.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">{% trans 'Next' %}</a>
+                                    <a class="btn btn-outline-primary btn-sm" href="?sayfa={{ all_objects.paginator.num_pages }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">{% trans 'Last' %}</a>
+                                {% endif %}
+                              </span>
+                          </div>
+                      </div>
+                    </div>
+        </div>
+    </section>
+
+{% endblock %}

@@ -1,0 +1,303 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+
+
+
+{% block body %}
+        <div id="slider" class="inspiro-slider arrows-large arrows-creative dots-creative" data-height-xs="360" data-autoplay-timeout="10600" data-autoplay="true" data-animate-in="fadeIn" data-animate-out="fadeOut" data-items="1" data-loop="true" >
+            <!-- Slide 1 -->
+            <div class="slide background-overlay-one" style="background-image:url('{% static 'metaxdoor-automatic-door-arslanyapi-zorlu-avm.jpg' %}');">
+                <div class="container">
+                    <div class="slide-captions text-center">
+                        <!-- Captions -->
+                      <h5>METAXDOOR</h5>
+                                <div class="seperator seperator-small no-padding"></div>
+                                <h2 class="text-uppercase">{% trans 'Automatic Doors' %}</h2>
+                        <a class="btn btn-outline btn-light" href="{% url 'automatic-doors' %}">{% trans 'Browse' %}</a>
+                        <!-- end: Captions -->
+                    </div>
+                </div>
+            </div>
+            <!-- end: Slide 1 -->
+            <!-- Slide 2 -->
+            <div class="slide background-overlay-one" style="background-image:url('{% static 'hastane-hospital-door-metaxdoor.jpg' %}');">
+                <div class="container">
+                    <div class="slide-captions text-center">
+                        <!-- Captions -->
+                        <h5>METAXDOOR</h5>
+                                <div class="seperator seperator-small no-padding"></div>
+                                <h2 class="text-uppercase">{% trans 'Hospital Doors' %}</h2>
+                        <a class="btn btn-outline btn-light" href="{% url 'hospital-doors' %}">{% trans 'Browse' %}</a>
+                        <!-- end: Captions -->
+                    </div>
+                </div>
+            </div>
+            <!-- end: Slide 2 -->
+             <!-- Slide 3 -->
+            <div class="slide background-overlay-one" style="background-image:url('{% static 'security-guvenlik-metaxdoor-guvenlikli-kapi.jpg' %}');">
+                <div class="container">
+                    <div class="slide-captions text-center">
+                        <!-- Captions -->
+                        <h5>METAXDOOR</h5>
+                                <div class="seperator seperator-small no-padding"></div>
+                                <h2 class="text-uppercase">{% trans 'Security Doors' %}</h2>
+                        <a class="btn btn-outline btn-light" href="{% url 'security-doors' %}">{% trans 'Browse' %}</a>
+                        <!-- end: Captions -->
+                    </div>
+                </div>
+            </div>
+            <!-- end: Slide 3 -->
+        </div>
+
+        <section>
+            <div class="container">
+                <div class="text-center">
+                    <h1>{% trans 'Products' %}</h1><br>
+                </div>
+            </div>
+            <div class="row col-no-margin equalize" data-equalize-item=".text-box">
+
+                <!--Box 1-->
+                <div class="col-lg-4" style="background-color: #1ed4a5;">
+                    <div class="text-box" style="height: 259px;">
+                        <a href="{% url 'automatic-doors' %}"> <i class="fa fa-door-open text-medium"></i>
+                            <h2>{% trans 'Automatic Doors' %}</h2>
+                            <p>
+                                {% trans 'Provides smooth traffic with safety and comfort by high technology without sacrificing architectural aesthetic.' %}
+                            </p>
+                        </a>
+                    </div>
+                </div>
+                <!--End: Box 1-->
+                <!--Box 2-->
+                <div class="col-lg-4" style="background-color: #6f8db8;">
+                    <div class="text-box" style="height: 259px;">
+                        <a href="{% url 'hospital-doors' %}"> <i class="fa fa-door-closed text-medium"></i>
+                            <h2>{% trans 'Hospital Doors' %}</h2>
+                            <p>
+                                {% trans 'Our hospital doors are specially suited to the cleaning regimes needed to prevent the spread of infection.' %}
+                            </p>
+                        </a>
+                    </div>
+                </div>
+                <!--End: Box 2-->
+
+                <!--Box 3  -->
+                <div class="col-lg-4" style="background-color: #ff9b4c;">
+                    <div class="text-box" style="height: 259px;">
+                        <a href="{% url 'security-doors' %}"> <i class="fa fa-user-lock text-medium"></i>
+                            <h2>{% trans 'Security Doors' %}</h2>
+                            <p>
+                                {% trans 'Our Security doors provide fast and stylish access control .' %}
+                            </p>
+                        </a>
+                    </div>
+                </div>
+                <!--End: Box 3-->
+
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <div>
+                    <div class="tabs">
+                        <nav class="nav nav-tabs nav-justified text-center">
+                            <h3 class="nav-item nav-link" >{% trans 'Automatic Doors' %}</h3>
+                        </nav>
+                    </div>
+                </div>
+                <div id="portfolio" class="grid-layout portfolio-3-columns grid-loaded" data-margin="20" style="margin: 0px -20px -20px 0px; position: relative; height: 2171.95px;">
+                    {% for x in auto_doors %}
+                    <div class="portfolio-item img-zoom ct-photography ct-media ct-branding ct-Media" style="padding: 0px 20px 20px 0px; position: absolute; left: 0px; top: 482.656px;">
+                        <div class="portfolio-item-wrap">
+                            <div class="portfolio-image">
+                                <a href="{% url 'automatic-doors-content' slug=x.slug %}">
+                                    {% if LANGUAGE_CODE == "tr" %}
+                                    <img alt="" src="{{ x.image_tr.url }}">
+                                    {% else %}
+                                    {% if x.image_en %}
+                                    <img alt="" src="{{ x.image_en.url }}">
+                                    {% else %}
+                                    <img alt="" src="{{ x.image_tr.url }}">
+                                    {% endif %}
+                                    {% endif %}
+                                </a>
+                            </div>
+                            <div class="portfolio-description">
+                                <a href="{% url 'automatic-doors-content' slug=x.slug %}">
+                                    {% if LANGUAGE_CODE == 'tr' %}
+                                    <h3>{{ x.title_tr }}</h3>
+                                    {% else %}
+                                    <h3>{{ x.title_en }}</h3>
+                                    {% endif %}
+                                    <span>{{ x.product_type }}</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="text-center">
+                    <a class="btn btn-rounded btn-light" href="{% url 'automatic-doors' %}">{% trans 'More' %}</a>
+                </div>
+            </div>
+            <div class="container">
+                <div>
+                    <div class="tabs">
+                        <nav class="nav nav-tabs nav-justified text-center">
+                            <h3 class="nav-item nav-link" >{% trans 'Hospital Doors' %}</h3>
+                        </nav>
+                    </div>
+                </div>
+                <div id="portfolio" class="grid-layout portfolio-3-columns grid-loaded" data-margin="20" style="margin: 0px -20px -20px 0px; position: relative; height: 2171.95px;">
+                    {% for x in hospital_doors %}
+                    <div class="portfolio-item img-zoom ct-photography ct-media ct-branding ct-Media" style="padding: 0px 20px 20px 0px; position: absolute; left: 0px; top: 482.656px;">
+                        <div class="portfolio-item-wrap">
+                            <div class="portfolio-image">
+                                <a href="{% url 'hospital-doors-content' slug=x.slug %}">
+                                    {% if LANGUAGE_CODE == "tr" %}
+                                    <img alt="" src="{{ x.image_tr.url }}">
+                                    {% else %}
+                                    {% if x.image_en %}
+                                    <img alt="" src="{{ x.image_en.url }}">
+                                    {% else %}
+                                    <img alt="" src="{{ x.image_tr.url }}">
+                                    {% endif %}
+                                    {% endif %}
+                                </a>
+                            </div>
+                            <div class="portfolio-description">
+                                <a href="{% url 'hospital-doors-content' slug=x.slug %}">
+                                    {% if LANGUAGE_CODE == 'tr' %}
+                                    <h3>{{ x.title_tr }}</h3>
+                                    {% else %}
+                                    <h3>{{ x.title_en }}</h3>
+                                    {% endif %}
+                                    <span>{{ x.product_type }}</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="text-center">
+                    <a class="btn btn-rounded btn-light" href="{% url 'hospital-doors' %}">{% trans 'More' %}</a>
+                </div>
+            </div>
+            <div class="container">
+                <div>
+                    <div class="tabs">
+                        <nav class="nav nav-tabs nav-justified text-center">
+                            <h3 class="nav-item nav-link" >{% trans 'Security Doors' %}</h3>
+                        </nav>
+                    </div>
+                </div>
+                <div id="portfolio" class="grid-layout portfolio-3-columns grid-loaded" data-margin="20" style="margin: 0px -20px -20px 0px; position: relative; height: 2171.95px;">
+                    {% for x in security_doors %}
+                    <div class="portfolio-item img-zoom ct-photography ct-media ct-branding ct-Media" style="padding: 0px 20px 20px 0px; position: absolute; left: 0px; top: 482.656px;">
+                        <div class="portfolio-item-wrap">
+                            <div class="portfolio-image">
+                                <a href="{% url 'security-doors-content' slug=x.slug %}">
+                                    {% if LANGUAGE_CODE == "tr" %}
+                                    <img alt="" src="{{ x.image_tr.url }}">
+                                    {% else %}
+                                    {% if x.image_en %}
+                                    <img alt="" src="{{ x.image_en.url }}">
+                                    {% else %}
+                                    <img alt="" src="{{ x.image_tr.url }}">
+                                    {% endif %}
+                                    {% endif %}
+                                </a>
+                            </div>
+                            <div class="portfolio-description">
+                                <a href="{% url 'security-doors-content' slug=x.slug %}">
+                                    {% if LANGUAGE_CODE == 'tr' %}
+                                    <h3>{{ x.title_tr }}</h3>
+                                    {% else %}
+                                    <h3>{{ x.title_en }}</h3>
+                                    {% endif %}
+                                    <span>{{ x.product_type }}</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="text-center">
+                    <a class="btn btn-rounded btn-light" href="{% url 'security-doors' %}">{% trans 'More' %}</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="page-content">
+                    <div class="container">
+                        <!-- post content -->
+
+                        <!-- Page title -->
+                        <div class="page-title">
+                            <h1>{% trans 'Last News' %}</h1><br>
+
+                        </div>
+                        <!-- end: Page title -->
+
+                        <!-- Blog -->
+                        <div id="blog" class="grid-layout post-3-columns m-b-30 grid-loaded" data-item="post-item" style="margin: 0px -20px -20px 0px; position: relative; height: 1600.25px;">
+                            {% for x in news %}
+                            <div class="post-item border" style="padding: 0px 20px 20px 0px; position: absolute; left: 0px; top: 0px;">
+                                <div class="post-item-wrap">
+                                    <div class="post-image">
+                                        <a href="{% url 'news-detail' slug=x.slug %}">
+                                            <img alt="" class="img-fluid img-thumbnail" height="150" src="{{x.image.url}}">
+                                        </a>
+                                    </div>
+                                    <div class="post-item-description">
+                                        <span class="post-meta-date"><i class="fa fa-calendar-o"></i>{{ x.date }}</span>
+                                        <h2><a href="{% url 'news-detail' slug=x.slug %}">
+                                            {% if LANGUAGE_CODE == 'tr' %}
+                                            {{ x.title_tr }}
+                                  {% else %}
+                                  {{ x.title_en }}
+                                  {% endif %}
+                                </a></h2>
+                                        <p>
+                                                {% if LANGUAGE_CODE == 'tr' %}
+                                                {{ x.content_tr|safe|truncatewords:9 }}
+                                      {% else %}
+                                      {{ x.content_en|safe|truncatewords:10 }}
+                                      {% endif %}
+                                        </p>
+
+                                        <a href="{% url 'news-detail' slug=x.slug %}" class="item-link">{% trans 'Read More' %} <i class="fa fa-arrow-right"></i></a>
+
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+
+
+                        </div>
+                    </div>
+                    <!-- end: post content -->
+                    {% if view_popup %}
+                                <div class="mfp-content">
+                                    <div id="modalShop" class="modal modal-auto-open no-padding modal-active" data-delay="1500" style="max-width: 700px;">
+                                            <div class="row">
+                                                <div class="col-md-6 d-none d-sm-block no-padding" style="background: transparent url(&quot; {{ view_popup.image.url }}&quot;) no-repeat scroll center top / cover; height:470px;"></div>
+                                                <div class="col-md-6">
+                                                    <div class="p-40 p-xs-20">
+                                                        <h2>{{ view_popup.title }}</h2>
+                                                       <p class="m-b-20">
+                                                        {{ view_popup.content }}
+                                                       </p>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    </div>
+                                </div>
+                    {% endif %}
+        </section>
+{% endblock %}

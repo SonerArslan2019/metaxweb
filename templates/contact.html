@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block body %}
+
+
+<section id="page-content">
+    <div class="container">
+                                        <div class="page-title">
+                                                    <h1>{% trans 'Contact' %}</h1><br>
+                                                    <div class="breadcrumb float-left">
+                                                            <ul>
+                                                                <li><a href="{% url 'home' %}">{% trans 'Home' %}</a>
+                                                                </li>
+                                                                <li class="active"><a href="#">{% trans 'Contact' %}</a>
+                                                                </li>
+                                                            </ul>
+
+                                                    </div>
+                                        </div><br><br>
+                         <!-- CONTENT -->
+                             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3007.1642863458387!2d28.641064314967487!3d41.08725697929284!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14b55858d001e611%3A0xde307eb449ad061c!2sArslan+Yap%C4%B1+Otomasyon!5e0!3m2!1str!2str!4v1546596072733" style="width: 100%; height: 280px;" frameborder="0" style="border:0" allowfullscreen=""></iframe>
+                             <br><br>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5">
+                                        <div class="icon-box effect small clean">
+                                            <div class="icon">
+                                                <a><i class="fas fa-map-marker-alt"></i></a>
+                                            </div><br>
+                                            <h3>Arslan Yapı Otomasyon</h3>
+                                            Orhangazi Mah. ISISO San. Sit.
+                                            V1 Blok No: 2-4 Esenyurt/İST
+                                        </div>
+                                        <div class="icon-box effect small clean">
+                                                    <div class="icon">
+                                                        <a><i class="fa fa-phone"></i></a>
+                                                    </div>
+                                                <h3>{% trans 'Phone' %}</h3>
+                                                <br> +90 (212) 671 26 70
+                                                <br>
+                                                <p></p>
+                                        </div>
+                                        <div class="social-icons m-t-30 social-icons-colored">
+                                            <ul>
+                                                <li class="social-facebook"><a target="_blank" href="https://www.facebook.com/ArslanyapiOtomasyon"><i class="fab fa-facebook-f"></i></a></li>
+                                                <li class="social-twitter"><a target="_blank" href="https://twitter.com/Arslanyapi"><i class="fab fa-twitter"></i></a></li>
+                                                <li class="social-instagram"><a target="_blank" href="https://www.instagram.com/arslanyapiotomasyon/"><i class="fab fa-instagram"></i></a></li>
+                                                <li class="social-linkedin"><a target="_blank" href="https://www.linkedin.com/company/arslanyap%C4%B1-automation/"><i class="fab fa-linkedin"></i></a></li>
+                                            </ul>
+                                        </div>
+
+
+                    <div class="col-lg-7">
+                        <div>
+                            <h3>{% trans 'Call Back' %}</h3><br>
+                        </div>
+                        <form method="POST">
+                            {% csrf_token %}
+                            <div class="row">
+
+                                <div class="form-group col-md-6">
+                                    <label for="name">{% trans 'Full name' %}</label>
+                                    <input type="text" aria-required="true" name="full_name" required class="form-control required name" placeholder="">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="name">{% trans 'Company' %}</label>
+                                    <input type="text" aria-required="true" name="company" required class="form-control required name" placeholder="">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-12">
+                                    <label for="subject">{% trans 'Phone' %}</label>
+                                    <input type="text" required name="phone" class="form-control required" placeholder="">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label class="p-checkbox checkbox-color-primary">
+                                        <input required type="checkbox" name="check_privacy"><span class="p-checkbox-style"></span>&nbsp;
+                                        {% if LANGUAGE_CODE == 'tr' %}
+                                            <span><a href="{% url 'privacy' %}" target="_blank"><span class="text-primary">GIZLILIK POLITIKASI</span></a>'NI OKUDUM. İLETIŞIM BILGILERIMIN VE SORGULARIMIN KALICI OLARAK SAKLANDIĞINA KATILIYORUM!</span>
+                                        {% else %}
+                                            <span>I HAVE READ THE <a href="{% url 'privacy' %}" target="_blank"><span class="text-primary">PRIVACY POLICY</span></a>. I AGREE THAT MY CONTACT DETAILS AND QUERIES ARE STORED PERMANENTLY!</span>
+                                        {% endif %}
+                                    </label>
+                                </div>
+                            </div>
+                            <button class="btn" type="submit" name="btn_click" id="form-submit"><i class="fa fa-paper-plane"></i>&nbsp;&nbsp;{% trans 'Send' %}&nbsp;</button>
+                        </form>
+                    </div>
+                 </div>
+            </div>
+        </div>
+    </div>
+</section>
+                    <!-- end: CONTENT -->
+
+    {% if status %}
+    <div id="modalStripSuccess" role="succes_modal" class="modal-strip modal-bottom background-success modal-active">
+        <div class="container">
+            <div class="text-center p-10"> {% trans 'Form submitted.' %}
+                <a aria-hidden="true" data-dismiss="succes_modal" href="{% url 'contact' %}"  class="close">×</a>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+{% endblock %}

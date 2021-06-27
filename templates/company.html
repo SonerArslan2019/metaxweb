@@ -1,0 +1,133 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+{% get_current_language as LANGUAGE_CODE %}
+
+{% block body %}
+
+ <!-- Page Content -->
+ <section id="page-content" class="sidebar-right">
+    <div class="container">
+            <div class="row">
+                    <div class="page-title">
+                            <h1>{% trans 'Company' %}</h1>
+
+                            <div class="breadcrumb float-left">
+                                    <ul>
+                                        <li><a href="{% url 'home' %}">{% trans 'Home' %}</a>
+                                        </li>
+                                        </li>
+                                        <li class="active"><a href="#">{% trans 'Company' %}</a>
+                                        </li>
+                                    </ul>
+                                </div><br>
+                        </div>
+            </div>
+                <!-- end: Page title -->
+        <div class="row">
+            <!-- content -->
+            <div class="content col-lg-9">
+                <!-- Blog -->
+                <div id="blog" class="single-post">
+                    <!-- Post single item-->
+                    <div class="post-item">
+                        <div class="post-item-wrap">
+                            <div class="post-image">
+
+                                <a href="#">
+                                    <img class="img-fluid" src="{% static 'company.jpg' %}">
+                                </a>
+                            </div>
+                            <div class="post-item-description">
+                                {% if LANGUAGE_CODE == 'tr' %}
+                                <p>{{ company.content_tr|safe }}</p>
+                                {% else %}
+                               <p>{{ company.content_en|safe }}</p>
+                                {% endif %}
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+                               <div class="sidebar sticky-sidebar col-lg-3">
+                                <div class="text-center">
+                                    <div class="widget clearfix widget-contact-us p-cb" style="background-image: url('#'); background-position: 50% 20px; background-repeat: no-repeat">
+                                        <h4 class="widget-title">{% trans 'Contact us' %}</h4>
+                                        <ul class="list-icon">
+                                            <li><i class="fa fa-map-marker-alt"></i>
+                                                Orhangazi Mah. ISISO San. Sit.<br>
+                                                V1 Blok No: 2-4 Esenyurt/İST</li>
+                                            <li><i class="fa fa-phone"></i>+90 (212) 671 26 70</li>
+                                            <li><i class="far fa-envelope"></i>info@arslanyapi.com.tr
+
+                                            </li>
+                                            <li><i class="far fa-clock"></i>{% trans 'Monday - Friday' %} : 08:00 - 18:30</strong>
+                                                <br>{% trans 'Saturday, Sunday' %}: <strong>{% trans 'Closed' %}</strong>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    </div>
+                    <div><br>
+                        <h4 class="widget-title">{% trans 'Products' %}</h4>
+                        <br>
+                    </div>
+                    <div class="text-center">
+                        <a style="width: 220px;" href="{% url 'automatic-doors' %}" class="btn btn-rounded btn-reveal btn-light btn-reveal-left text-center">
+                            <span>{% trans 'Automatic Doors' %}</span><i class="fa fa-arrow-right"></i></a>
+                        <a href="{% url 'hospital-doors' %}" style="width: 220px;" class="btn btn-rounded btn-reveal btn-light btn-reveal-left text-center">
+                            <span>{% trans 'Hospital Doors' %}</span><i class="fa fa-arrow-right"></i></a>
+                        <a href="{% url 'security-doors' %}" style="width: 220px;" class="btn btn-rounded btn-reveal btn-light btn-reveal-left text-center">
+                            <span>{% trans 'Security Doors' %}</span><i class="fa fa-arrow-right"></i></a>
+
+                        </div>
+
+
+            </div>
+        </div>
+    </div>
+</section>
+
+    <div class="modal fade" id="modal-3" tabindex="-1" role="modal" aria-labelledby="modal-label-3"
+                aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 id="modal-label-3" class="modal-title">{% trans 'Request' %}</h4>
+                                <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                            </div>
+                        <div class="modal-body">
+                                  <form action="" method="POST">
+                                            {% csrf_token %}
+                                        <div class="row">
+                                            <div class="col-md-6 xs-box">
+                                                <div class="box-services-a">
+                                                        <label for="exampleInputEmail1">{% trans 'Email address' %}*</label>
+                                                        <input class="form-control" required id="email" name="email" required aria-describedby="emailHelp" type="email">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                    <div class="box-services-a">
+                                                            <label>{% trans 'Full Name' %}*</label>
+                                                            <input class="form-control" id="full_name" name="full_name" type="text" required>
+                                                    </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mb20">
+                                                <div class="col-md-12"><br>
+                                                        <label>{% trans 'Message' %}*</label>
+                                                        <textarea class="form-control" id="message" name="message" required rows="4"></textarea>
+                                                </div>
+                                        </div>
+                                   </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button data-dismiss="modal" class="btn btn-b" type="button">{% trans 'Close' %}</button>
+                            <button class="btn btn-b" name="request-file" type="submit">{% trans 'Send Message' %}</button>
+                        </div>
+                    </div>
+
+                </div>
+    </div>
+{% endblock %}

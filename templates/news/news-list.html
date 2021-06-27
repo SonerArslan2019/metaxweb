@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block body %}
+
+<section id="page-content">
+        <div class="container">
+            <!-- post content -->
+
+            <!-- Page title -->
+            <div class="page-title">
+                <h1>{% trans 'News' %}</h1><br>
+                <div class="breadcrumb float-left">
+                        <ul>
+                            <li><a href="{% url 'home' %}">{% trans 'Home' %}</a>
+                            </li>
+                            <li class="active"><a href="#">{% trans 'News' %}</a>
+                            </li>
+                        </ul>
+                    </div>
+            </div>
+            <!-- end: Page title -->
+
+            <!-- Blog -->
+            <div id="blog" class="grid-layout post-3-columns m-b-30 grid-loaded" data-item="post-item" style="margin: 0px -20px -20px 0px; position: relative; height: 1600.25px;">
+                {% for x in all_objects %}
+                <div class="post-item border" style="padding: 0px 20px 20px 0px; position: absolute; left: 0px; top: 0px;">
+                    <div class="post-item-wrap">
+                        <div class="post-image">
+                            <a href="{% url 'news-detail' slug=x.slug %}">
+                                <img alt="" src="{{x.image.url}}">
+                            </a>
+                        </div>
+                        <div class="post-item-description">
+                            <span class="post-meta-date"><i class="fa fa-calendar-o"></i>{{ x.date }}</span>
+                            <h2><a href="{% url 'news-detail' slug=x.slug %}">
+                                {% if LANGUAGE_CODE == 'tr' %}
+                                {{ x.title_tr }}
+                      {% else %}
+                      {{ x.title_en }}
+                      {% endif %}
+                    </a></h2>
+                            <p>
+                                    {% if LANGUAGE_CODE == 'tr' %}
+                                    {{ x.content_tr|safe|truncatewords:9 }}
+                          {% else %}
+                          {{ x.content_en|safe|truncatewords:10 }}
+                          {% endif %}
+                            </p>
+
+                            <a href="{% url 'news-detail' slug=x.slug %}" class="item-link">{% trans 'Read More' %} <i class="fa fa-arrow-right"></i></a>
+
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+
+
+            </div>
+
+            <div class="row">
+              <div class="col-md-12 ">
+                  <div class="pagination text-center">
+                      <span class="step-links ">
+                        {% if all_objects.has_previous %}
+                            <a class="btn btn-outline-primary btn-sm" href="?sayfa=1{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">1</a>
+                            <a class="btn btn-outline-primary btn-sm" href="?sayfa={{ all_objects.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">{% trans 'Back' %}</a>
+                        {% endif %}
+
+                        <span class="current">
+                            {% trans 'Page' %} {{ all_objects.number }} / {{ all_objects.paginator.num_pages }}
+                        </span>
+
+                        {% if all_objects.has_next %}
+                            <a class="btn btn-outline-primary btn-sm" href="?sayfa={{ all_objects.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">{% trans 'Next' %}</a>
+                            <a class="btn btn-outline-primary btn-sm" href="?sayfa={{ all_objects.paginator.num_pages }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">{% trans 'Last' %}</a>
+                        {% endif %}
+                      </span>
+                  </div>
+              </div>
+            </div>
+        </div>
+        <!-- end: post content -->
+
+    </section>
+
+{% endblock %}

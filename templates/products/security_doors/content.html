@@ -1,0 +1,188 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+{% get_current_language as LANGUAGE_CODE %}
+
+{% block body %}
+
+ <!-- Page Content -->
+ <section id="page-content" class="sidebar-right">
+    <div class="container">
+            <div class="row">
+                    <div class="page-title">
+                            <h1>{{ title }}</h1>
+                            <div class="breadcrumb float-left">
+                                    <ul>
+                                        <li><a href="{% url 'home' %}">{% trans 'Home' %}</a>
+                                        </li>
+                                        <li><a href="{% url 'security-doors' %}">{% trans 'Security Doors' %}</a>
+                                        </li>
+                                        <li class="active"><a href="#">{{ title }}</a>
+                                        </li>
+                                    </ul>
+                                </div><br>
+                        </div>
+            </div>
+                <!-- end: Page title -->
+        <div class="row">
+            <!-- content -->
+            <div class="content col-lg-9">
+                <!-- Blog -->
+                <div id="blog" class="single-post">
+                    <!-- Post single item-->
+                    <div class="post-item">
+                        <div class="post-item-wrap">
+                            <div class="post-image">
+                                <a href="#">
+                                    {% if LANGUAGE_CODE == "tr" %}
+                                    <img alt="" class="img-fluid" src="{{ security_doors.image_tr.url }}">
+                                    {% else %}
+                                    {% if hospital_doors.image_en %}
+                                    <img alt="" class="img-fluid" src="{{ security_doors.image_en.url }}">
+                                    {% else %}
+                                    <img alt="" class="img-fluid" src="{{ security_doors.image_tr.url }}">
+                                    {% endif %}
+                                    {% endif %}
+                                </a>
+                            </div>
+                            <div class="post-item-description">
+                                {% if LANGUAGE_CODE == 'tr' %}
+                                <p>{{ security_doors.content_tr|safe }}</p>
+                                {% else %}
+                               <p>{{ security_doors.content_en|safe }}</p>
+                                {% endif %}
+                            </div>
+
+                            <div class="row col-no-margin">
+                                    <!--Box 1-->
+                                    {% if security_doors.spec_file_tr %}
+                                    <div class="col-lg-4">
+                                        {% if LANGUAGE_CODE == "tr" %}
+                                        <a target="_blank" href="{% url 'pdf' file=security_doors.spec_file_tr %}">
+                                        {% else %}
+                                        {% if security_doors.spec_file_en %}
+                                        <a target="_blank" href="{% url 'pdf' file=security_doors.spec_file_en %}">
+                                            {% else %}
+                                        <a target="_blank" href="{% url 'pdf' file=security_doors.spec_file_tr %}">
+
+                                            {% endif %}
+                                        {% endif %}
+                                        <div class="text-box text-dark" style="height: auto;">
+                                            <i class="icon-layers2"></i>
+                                                <br><span class="text-small">Technical Specifications</span>
+                                        </div>
+                                    </a>
+                                    </div>
+                                    {% endif %}
+                                    <!--End: Box 1-->
+                                    <!--Box 2-->
+                                        {% if security_doors.catalog_file_tr %}
+                                    <div class="col-lg-4">
+                                        {% if LANGUAGE_CODE == "tr" %}
+                                        <a target="_blank" href="{% url 'pdf' file=security_doors.catalog_file_tr %}">
+                                        {% else %}
+                                        {% if security_doors.spec_file_en %}
+                                        <a target="_blank" href="{% url 'pdf' file=security_doors.catalog_file_en %}">
+                                            {% else %}
+                                        <a target="_blank" href="{% url 'pdf' file=security_doors.catalog_file_tr %}">
+
+                                            {% endif %}
+                                        {% endif %}
+                                        <div class="text-box text-dark" style="height: auto;">
+                                             <i class="icon-layers2"></i>
+                                                <br><span class="text-small">{% trans 'Product Catalogue' %}</span>
+                                        </div>
+                                    </a>
+
+                                    </div>
+                                    {% endif %}
+                                    <!--End: Box 2-->
+                                    <!--Box 3-->
+                                    <div class="col-lg-4">
+                                        <a data-target="#modal-3" data-toggle="modal">
+                                        <div class="text-box text-dark" style="height: auto;">
+                                            <i class="icon-layers2"></i><br>
+                                                <span class="text-small">{% trans 'Architectural Drawings (DXF - DWG)' %}</span>
+                                        </div>
+                                    </a>
+
+                                    </div>
+                                    <!--End: Box 3-->
+                                </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+                               <div class="sidebar sticky-sidebar col-lg-3">
+                    <div>
+                        <h4 class="widget-title">{% trans 'Products' %}</h4>
+                        <br>
+                    </div>
+                    <div class="text-center">
+                        <a style="width: 220px;" href="{% url 'automatic-doors' %}" class="btn btn-rounded btn-reveal btn-light btn-reveal-left text-center">
+                            <span>{% trans 'Automatic Doors' %}</span><i class="fa fa-arrow-right"></i></a>
+                        <a href="{% url 'hospital-doors' %}" style="width: 220px;" class="btn btn-rounded btn-reveal btn-light btn-reveal-left text-center">
+                            <span>{% trans 'Hospital Doors' %}</span><i class="fa fa-arrow-right"></i></a>
+                        <a href="{% url 'security-doors' %}" style="width: 220px;" class="btn btn-rounded btn-reveal btn-light btn-reveal-left text-center">
+                            <span>{% trans 'Security Doors' %}</span><i class="fa fa-arrow-right"></i></a>
+                    </div>
+
+
+            </div>
+        </div>
+    </div>
+</section>
+
+{% if status %}
+<div id="modalStripSuccess" role="succes_modal" class="modal-strip modal-bottom background-success modal-active">
+    <div class="container">
+        <div class="text-center p-10"> {% trans 'Form submitted.' %}
+            <a aria-hidden="true" data-dismiss="succes_modal" href="{% url 'security-doors-content' slug=security_doors.slug %}"  class="close">×</a>
+        </div>
+    </div>
+</div>
+{% endif %}
+    <div class="modal fade" id="modal-3" tabindex="-1" role="modal" aria-labelledby="modal-label-3"
+            aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 id="modal-label-3" class="modal-title">{% trans 'Request' %}</h4>
+                                        <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="" method="POST">
+                                            {% csrf_token %}
+                                            <div class="row">
+                                                <div class="col-md-6 xs-box">
+                                                    <div class="box-services-a">
+                                                            <label for="exampleInputEmail1">{% trans 'Email address' %}*</label>
+                                                            <input class="form-control" required id="email" name="email" required aria-describedby="emailHelp" type="email">
+                                                </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="box-services-a">
+                                                            <label>{% trans 'Full Name' %}*</label>
+                                                            <input class="form-control" id="full_name" name="full_name" type="text" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                                    <div class="row mb20">
+                                                            <div class="col-md-12"><br>
+                                                                    <label>{% trans 'Message' %}*</label>
+                                                                    <textarea class="form-control" id="message" name="message" required rows="4"></textarea>
+                                                            </div>
+                                                    </div>
+
+                                            <div class="modal-footer">
+                                                <button data-dismiss="modal" class="btn btn-b" type="button">{% trans 'Close' %}</button>
+                                                <button class="btn btn-b" name="request-file" type="submit">{% trans 'Send' %}</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                    </div>
+                </div>
+    </div>
+{% endblock %}

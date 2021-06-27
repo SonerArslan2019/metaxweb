@@ -1,0 +1,251 @@
+{% load static %}
+{% load i18n %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- favicon title-->
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico"/>
+    <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}"/>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="author" content="ARSLANYAPI - METAXDOOR" />
+    <meta name="description" content="">
+    <!-- Document title -->
+    <title>{% block title %} {{ title }} {% endblock %}</title>
+
+    <!-- Stylesheets & Fonts --><link href="{% static 'css/plugins.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'css/responsive.css' %}" rel="stylesheet"> </head>
+
+<body>
+
+
+    <!-- Body Inner -->    <div class="body-inner">
+
+
+        <!-- Topbar -->
+        <div id="topbar" class="d-none d-xl-block d-lg-block">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <ul class="top-menu">
+                            <li> Orhangazi Mah. ISISO San. Sİtesi V1 Blok No: 2-4 Esenyurt / İST </li>
+
+                        </ul>
+                    </div>
+                    <div class="col-md-6 d-none d-sm-block">
+                        <div class="social-icons social-icons-colored-hover">
+                            <ul>
+                                <li class="social-facebook"><a href="https://www.facebook.com/ArslanyapiOtomasyon"><i class="fab fa-facebook-f"></i></a></li>
+                                <li class="social-bimobject"><a href="https://www.bimobject.com/en/product"><i class="fab fa-bimobject"></i></a></li>
+                                <li class="social-instagram"><a href="https://www.instagram.com/arslanyapiotomasyon/"><i class="fab fa-instagram"></i></a></li>
+                                <li class="social-linkedin"><a target="_blank" href="https://www.linkedin.com/company/arslanyap%C4%B1-automation/"><i class="fab fa-linkedin"></i></a></li>
+                                <li class="social-youtube"><a target="_blank" href="https://www.youtube.com/channel/UCuwlV_HYCOjE43yq38b_EIw"><i class="fab fa-youtube"></i></a></li>
+                                
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end: Topbar -->
+
+        <!-- Header -->
+        <header id="header">
+            <div class="header-inner">
+                <div class="container">
+                    <!--Logo-->
+                    <div id="logo">
+                        <a href="{% url 'home' %}" class="logo">
+                            <img  src="{% static 'images/logo.png' %}" alt="Arslan Yapı">
+                        </a>
+                    </div>
+
+                    </div>
+                    <!--end: Header Extras-->
+
+                    <!--Navigation Resposnive Trigger-->
+                    <div id="mainMenu-trigger">
+                        <button class="lines-button x"> <span class="lines"></span> </button>
+                    </div>
+                    <!--end: Navigation Resposnive Trigger-->
+
+                    <!--Navigation-->
+                    <div id="mainMenu" class="light">
+                        <div class="container">
+                            <nav>
+                                <ul>
+                                    <li><a href="{% url 'home' %}">{% trans 'Home' %}</a></li>
+                                    <li><a href="{% url 'company' %}">{% trans 'Company' %}</a></li>
+
+                                    <li><a href="{% url 'news' %}">{% trans 'News' %}</a></li>
+                                    <li class="dropdown"> <a href="#">{% trans 'Gallery' %}</a>
+                                        <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="{% url 'gallery' %}">{% trans 'All' %}</a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'gallery-automatic' %}">{% trans 'Automatic Doors' %}</a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'gallery-hospital' %}">{% trans 'Hospital Doors' %}</a>
+                                    </li>
+                                     <li>
+                                        <a href="{% url 'gallery-security' %}">{% trans 'Security Doors' %}</a>
+                                    </li>
+                                </ul>
+                                    </li>
+                                    <li class="dropdown"> <a href="#">{% trans 'Products' %}</a>
+                                        <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="{% url 'automatic-doors' %}">{% trans 'Automatic Doors' %}</a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'hospital-doors' %}">{% trans 'Hospital Doors' %}</a>
+                                    </li>
+                                      <li>
+                                        <a href="{% url 'security-doors' %}">{% trans 'Security Doors' %}</a>
+                                    </li>
+                                </ul>
+                                    </li>
+                                    <li><a href="{% url 'contact' %}">{% trans 'Contact' %}</a></li>
+
+                                    {% get_current_language as LANGUAGE_CODE %}
+
+                                    <li>
+                                            <form action="{% url 'set_language' %}" method="post">
+                                                    {% csrf_token %}
+                                                    <input name="next" class="small" type="hidden" value="{{ redirect_to }}" />
+                                                    <select  name="language" style="background-color: white;" class="text-small" onchange="this.form.submit()">
+                                                        {% get_current_language as SELECTEDLANG %}
+                                                        {% get_available_languages as LANGUAGES %}
+                                                        {% for lang in LANGUAGES %}
+                                                            <option value="{{ lang.0 }}" {% if lang.0 == SELECTEDLANG %}selected{% endif %}>{% if lang.1 == 'English' %}English&nbsp;&nbsp;{% else %}{{ lang.1 }}&nbsp;&nbsp;{% endif %}</option>
+                                                        {% endfor %}
+                                                    </select>
+                                                </form>
+
+                                    </li>
+                                    <!--
+                                    <li class="text-center">
+                                            &nbsp;{% if LANGUAGE_CODE == 'tr' %} <img class="img-fluid" width="24" height="24" src="{% static 'images/flag/tr.svg' %}" alt="tr"> {% else %} <img class="img-fluid" width="24" height="24" src="{% static 'images/flag/en.svg' %}" alt="tr"> {% endif %}
+                                            &nbsp;
+                                    </li>
+                                   -->
+                                </ul>
+                            </nav>
+                    </div>
+                    <!--end: Navigation-->
+                </div>
+            </div>
+        </header>
+        <!-- end: Header -->
+
+
+{% block body %}
+
+
+{% endblock %}
+
+<footer id="footer">
+    <div class="footer-content">
+      <div class="container">
+        <div class="row">
+<div class="col-md-3">
+<div class="icon-box effect small clean">
+<div class="icon">
+<a><i class="far fa-clock"></i></a>
+</div>
+<h3>{% trans 'Working Days' %}</h3>
+<p><strong>{% trans 'Monday - Friday' %}</strong>
+<br>08:00 - 18: 30 Uhr</p>
+<p><strong>{% trans 'Saturday, Sunday' %}</strong>
+<br>{% trans 'Closed' %}</p>
+</div>
+</div>
+<div class="col-md-3">
+<div class="icon-box effect small clean">
+<div class="icon">
+<a><i class="fas fa-map-marker-alt"></i></a>
+</div>
+<h3>Arslan Yapı Otomasyon</h3>
+<p>
+    Orhangazi Mah. ISISO San. Sit.
+    <br> V1 Blok No: 2-4 Esenyurt/İST
+</p>
+</p>
+</div>
+</div>
+<div class="col-md-3">
+<div class="icon-box effect small clean">
+<div class="icon">
+<a><i class="fa fa-phone"></i></a>
+</div>
+<h3>{% trans 'Contact' %}</h3>
+<p>
+    +90 (212) 671 26 70
+</p>
+    <a class="btn btn-light" href="{% url 'contact' %}">{% trans 'Call Back' %}</a>
+<br>
+</p>
+</div>
+</div>
+<div class="col-md-3">
+    <div class="icon-box effect small clean">
+    <div class="icon">
+    <a><i class="fa fa-envelope"></i></a>
+    </div>
+    <h3>{% trans 'E-Mail' %}</h3>
+    <p>info@arslanyapi.com.tr</p> 
+    <br>
+    </p>
+    </div>
+    </div>
+</div>
+      </div>
+    </div>
+    <div class="copyright-content">
+      <div class="container">
+
+         <div class="row">
+            <div class="col-lg-3">
+              <!-- Social icons -->
+              <div class="social-icons social-icons-colored float-left">
+                <ul>
+                  <li class="social-facebook"><a href="https://www.facebook.com/ArslanyapiOtomasyon"><i class="fab fa-facebook-f"></i></a></li>
+                  <li class="social-twitter"><a href="https://www.bimobject.com/en/product"><i class="fab fa-bimobject"></i></a></li>
+                  <li class="social-instagram"><a href="https://www.instagram.com/arslanyapiotomasyon/"><i class="fab fa-instagram"></i></a></li>
+                  <li class="social-linkedin"><a target="_blank" href="https://www.linkedin.com/company/arslanyap%C4%B1-automation/"><i class="fab fa-linkedin"></i></a></li>
+                  <li class="social-youtube"><a target="_blank" href="https://www.youtube.com/channel/UCuwlV_HYCOjE43yq38b_EIw"><i class="fab fa-youtube"></i></a></li>
+              </div>
+              <!-- end: Social icons -->
+          </div>
+
+          <div class="col-lg-6">
+        <div class="copyright-text text-center">ARSLAN YAPI OTOMASYON</div>
+    </div>
+    <div class="col-lg-3">
+        <div class="copyright-text text-center">OTOMATİK GİRİŞ VE GEÇİŞ SİSTEMLERİ</div>
+    </div>
+</div>
+      </div>
+    </div>
+  </footer>
+
+    </div>
+    <!-- end: Body Inner -->
+
+    <!-- Scroll top -->
+    <a id="scrollTop"><i class="icon-chevron-up1"></i><i class="icon-chevron-up1"></i></a>
+    <!--Plugins-->
+    <script src="{% static 'js/jquery.js' %}"></script>
+    <script src="{% static 'js/plugins.js' %}"></script>
+
+    <!--Template functions-->
+    <script src="{% static 'js/functions.js' %}"></script>
+</body>
+
+</html>

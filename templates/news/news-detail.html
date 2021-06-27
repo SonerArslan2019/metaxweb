@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+{% get_current_language as LANGUAGE_CODE %}
+
+{% block body %}
+
+ <!-- Page Content -->
+ <section id="page-content" class="sidebar-right">
+    <div class="container">
+            <div class="row">
+                    <div class="page-title">
+                            <h1>{% trans 'News' %}</h1>
+                            <div class="breadcrumb float-left">
+                                    <ul>
+                                        <li><a href="{% url 'home' %}">{% trans 'Home' %}</a>
+                                        </li>
+                                        <li><a href="{% url 'news' %}">{% trans 'News' %}</a>
+                                        </li>
+                                        <li class="active"><a href="#">{{ title }}</a>
+                                        </li>
+                                    </ul>
+                                </div><br>
+                        </div>
+            </div>
+                <!-- end: Page title -->
+        <div class="row">
+            <!-- content -->
+            <div class="content col-lg-9">
+                <!-- Blog -->
+                <div id="blog" class="single-post">
+                    <!-- Post single item-->
+                    <div class="post-item">
+                        <div class="post-item-wrap">
+                            <div class="post-image">
+                                <a href="#">
+                                    <img class="img-fluid" src="{{ news.image.url }}">
+                                </a>
+                            </div>
+                            <div class="post-item-description">
+                                    <h2>{{ title }}</h2>
+                                <div class="post-meta">
+
+                                    <span class="post-meta-date"><i class="far fa-calendar"></i>{{ news.date }}</span>
+                                </div>
+                                {% if LANGUAGE_CODE == 'tr' %}
+                                <p>{{ news.content_tr|safe }}</p>
+                                {% else %}
+                               <p>{{ news.content_en|safe }}</p>
+                                {% endif %}
+                            </div>
+                            <div class="post-navigation">
+                                {% for x in previous_news %}
+                                    <a href="{% url 'news-detail' slug=x.slug %}" class="post-prev">
+                                        <div class="post-prev-title"><span>{% trans 'Previous News' %}</span>{% if LANGUAGE_CODE == 'tr' %} {{ x.title_tr }}  {% else %} {{ x.title_en }} {% endif %}</div>
+                                    </a>
+                                    {% endfor %}
+                                    <a href="{% url 'news' %}" class="post-all">
+                <i class="icon-grid">                </i>
+            </a>
+            {% for x in next_news %}
+                                    <a href="{% url 'news-detail' slug=x.slug %}" class="post-next">
+                                        <div class="post-next-title"><span>{% trans 'Next News' %}</span>{% if LANGUAGE_CODE == 'tr' %} {{ x.title_tr }}  {% else %} {{ x.title_en }} {% endif %}</div>
+                                    </a>
+                                     {% endfor %}
+                                </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+                               <div class="sidebar sticky-sidebar col-lg-3">
+                    <div class="widget">                         <div class="tabs">
+                        <ul class="nav nav-tabs" id="tabs-posts" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#last-news" role="tab" aria-controls="last-news" aria-selected="true">{% trans 'Last News' %}</a>
+                            </li>
+
+                        </ul>
+                        <div class="tab-content" id="tabs-posts-content">
+                            <div class="tab-pane fade show active" id="last-news" role="tabpanel" aria-labelledby="popular-tab">
+                                    {% for x in last_news %}
+                                <div class="post-thumbnail-list">
+                                    <div class="post-thumbnail-entry">
+                                        <img class="img-fluid" src="{{ x.image.url }}">
+                                        <div class="post-thumbnail-content">
+                                            {% if LANGUAGE_CODE == 'tr' %}
+                                            <a href="{% url 'news-detail' slug=x.slug %}">{{ x.title_tr }}</a>
+                                            {% else %}
+                                            <a href="{% url 'news-detail' slug=x.slug %}">{{ x.title_en }}</a>
+                                            {% endif %}
+                                            <span class="post-date"><i class="far fa-calendar"></i>{{ x.date }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    <div>
+                        <h4 class="widget-title">{% trans 'Products' %}</h4>
+                        <br>
+                    </div>
+                    <div class="text-center">
+                        <a style="width: 220px;" href="{% url 'automatic-doors' %}" class="btn btn-rounded btn-reveal btn-light btn-reveal-left text-center">
+                            <span>{% trans 'Automatic Doors' %}</span><i class="fa fa-arrow-right"></i></a>
+                        <a href="{% url 'hospital-doors' %}" style="width: 220px;" class="btn btn-rounded btn-reveal btn-light btn-reveal-left text-center">
+                            <span>{% trans 'Hospital Doors' %}</span><i class="fa fa-arrow-right"></i></a>
+                        <a href="{% url 'security-doors' %}" style="width: 220px;" class="btn btn-rounded btn-reveal btn-light btn-reveal-left text-center">
+                            <span>{% trans 'Security Doors' %}</span><i class="fa fa-arrow-right"></i></a>
+
+                        </div>
+
+
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
