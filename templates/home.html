@@ -115,21 +115,21 @@
                         <div class="portfolio-item-wrap">
                             <div class="portfolio-image">
                                 <a href="{% url 'automatic-doors-content' slug=x.slug %}">
-                                    {% if LANGUAGE_CODE == "tr" %}
-                                    <img alt="" src="{{ x.image_tr.url }}">
+                                    {% if LANGUAGE_CODE == "de" %}
+                                    <img alt="" src="{{ x.image_de.url }}">
                                     {% else %}
                                     {% if x.image_en %}
                                     <img alt="" src="{{ x.image_en.url }}">
                                     {% else %}
-                                    <img alt="" src="{{ x.image_tr.url }}">
+                                    <img alt="" src="{{ x.image_de.url }}">
                                     {% endif %}
                                     {% endif %}
                                 </a>
                             </div>
                             <div class="portfolio-description">
                                 <a href="{% url 'automatic-doors-content' slug=x.slug %}">
-                                    {% if LANGUAGE_CODE == 'tr' %}
-                                    <h3>{{ x.title_tr }}</h3>
+                                    {% if LANGUAGE_CODE == 'de' %}
+                                    <h3>{{ x.title_de }}</h3>
                                     {% else %}
                                     <h3>{{ x.title_en }}</h3>
                                     {% endif %}
@@ -158,21 +158,21 @@
                         <div class="portfolio-item-wrap">
                             <div class="portfolio-image">
                                 <a href="{% url 'hospital-doors-content' slug=x.slug %}">
-                                    {% if LANGUAGE_CODE == "tr" %}
-                                    <img alt="" src="{{ x.image_tr.url }}">
+                                    {% if LANGUAGE_CODE == "de" %}
+                                    <img alt="" src="{{ x.image_de.url }}">
                                     {% else %}
                                     {% if x.image_en %}
                                     <img alt="" src="{{ x.image_en.url }}">
                                     {% else %}
-                                    <img alt="" src="{{ x.image_tr.url }}">
+                                    <img alt="" src="{{ x.image_de.url }}">
                                     {% endif %}
                                     {% endif %}
                                 </a>
                             </div>
                             <div class="portfolio-description">
                                 <a href="{% url 'hospital-doors-content' slug=x.slug %}">
-                                    {% if LANGUAGE_CODE == 'tr' %}
-                                    <h3>{{ x.title_tr }}</h3>
+                                    {% if LANGUAGE_CODE == 'de' %}
+                                    <h3>{{ x.title_de }}</h3>
                                     {% else %}
                                     <h3>{{ x.title_en }}</h3>
                                     {% endif %}
@@ -201,21 +201,21 @@
                         <div class="portfolio-item-wrap">
                             <div class="portfolio-image">
                                 <a href="{% url 'security-doors-content' slug=x.slug %}">
-                                    {% if LANGUAGE_CODE == "tr" %}
-                                    <img alt="" src="{{ x.image_tr.url }}">
+                                    {% if LANGUAGE_CODE == "de" %}
+                                    <img alt="" src="{{ x.image_de.url }}">
                                     {% else %}
                                     {% if x.image_en %}
                                     <img alt="" src="{{ x.image_en.url }}">
                                     {% else %}
-                                    <img alt="" src="{{ x.image_tr.url }}">
+                                    <img alt="" src="{{ x.image_de.url }}">
                                     {% endif %}
                                     {% endif %}
                                 </a>
                             </div>
                             <div class="portfolio-description">
                                 <a href="{% url 'security-doors-content' slug=x.slug %}">
-                                    {% if LANGUAGE_CODE == 'tr' %}
-                                    <h3>{{ x.title_tr }}</h3>
+                                    {% if LANGUAGE_CODE == 'de' %}
+                                    <h3>{{ x.title_de }}</h3>
                                     {% else %}
                                     <h3>{{ x.title_en }}</h3>
                                     {% endif %}
@@ -256,15 +256,15 @@
                                     <div class="post-item-description">
                                         <span class="post-meta-date"><i class="fa fa-calendar-o"></i>{{ x.date }}</span>
                                         <h2><a href="{% url 'news-detail' slug=x.slug %}">
-                                            {% if LANGUAGE_CODE == 'tr' %}
-                                            {{ x.title_tr }}
+                                            {% if LANGUAGE_CODE == 'de' %}
+                                            {{ x.title_de }}
                                   {% else %}
                                   {{ x.title_en }}
                                   {% endif %}
                                 </a></h2>
                                         <p>
-                                                {% if LANGUAGE_CODE == 'tr' %}
-                                                {{ x.content_tr|safe|truncatewords:9 }}
+                                                {% if LANGUAGE_CODE == 'de' %}
+                                                {{ x.content_de|safe|truncatewords:9 }}
                                       {% else %}
                                       {{ x.content_en|safe|truncatewords:10 }}
                                       {% endif %}
@@ -285,7 +285,7 @@
                                 <div class="mfp-content">
                                     <div id="modalShop" class="modal modal-auto-open no-padding modal-active" data-delay="1500" style="max-width: 700px;">
                                             <div class="row">
-                                                <div class="col-md-6 d-none d-sm-block no-padding" style="background: transparent url(&quot; {{ view_popup.image.url }}&quot;) no-repeat scroll center top / cover; height:470px;"></div>
+                                                <div class="col-md-6 d-none d-sm-block no-padding" style="background: transparent url('{{ view_popup.image.url }}') no-repeat scroll center top / cover; height:470px;"></div>
                                                 <div class="col-md-6">
                                                     <div class="p-40 p-xs-20">
                                                         <h2>{{ view_popup.title }}</h2>

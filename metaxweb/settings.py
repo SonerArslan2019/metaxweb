@@ -36,7 +36,7 @@ LANGUAGES = [
     ('en', _('English')),
 ]
 LOCALE_PATHS = (
-    os.path.join(BASE_DIR, 'locale'),
+    os.path.join(BASE_DIR, 'locale/'),
 )
 
 # Application definition
@@ -48,16 +48,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # 'django.contrib.sitemaps',
+    'django.contrib.sitemaps',
 
     #my app
-    # 'news',
-    # 'gallery',
-    # 'products',
-    # 'root',
+    'news',
+    'gallery',
+    'products',
+    'root',
     # 3th
-    # 'ckeditor',
-    # 'django_cleanup',
+    'ckeditor',
+    'django_cleanup',
 
 ]
 
@@ -147,20 +147,20 @@ STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# STATICFILES_DIRS = [
-#     os.path.join(BASE_DIR, 'static')
-# ]
-#
-# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles/')
-#
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static')
+]
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles/')
+
 # STATIC_URL = '/staticfiles/'
-#
-#
-# MEDIA_URL = '/media/'
-# MEDIA_ROOT = 'media'
+
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = 'media'
 #
 # try:
-#     from core.local_settings import *
+#     from metaxweb.local_settings import *
 # except:
 #     pass
 

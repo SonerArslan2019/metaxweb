@@ -35,15 +35,15 @@
                         <div class="post-item-description">
                             <span class="post-meta-date"><i class="fa fa-calendar-o"></i>{{ x.date }}</span>
                             <h2><a href="{% url 'news-detail' slug=x.slug %}">
-                                {% if LANGUAGE_CODE == 'tr' %}
-                                {{ x.title_tr }}
+                                {% if LANGUAGE_CODE == 'de' %}
+                                {{ x.title_de }}
                       {% else %}
                       {{ x.title_en }}
                       {% endif %}
                     </a></h2>
                             <p>
-                                    {% if LANGUAGE_CODE == 'tr' %}
-                                    {{ x.content_tr|safe|truncatewords:9 }}
+                                    {% if LANGUAGE_CODE == 'de' %}
+                                    {{ x.content_de|safe|truncatewords:9 }}
                           {% else %}
                           {{ x.content_en|safe|truncatewords:10 }}
                           {% endif %}

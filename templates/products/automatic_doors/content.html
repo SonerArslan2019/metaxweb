@@ -36,20 +36,20 @@
                             <div class="post-image">
 
                                 <a href="#">
-                                    {% if LANGUAGE_CODE == "tr" %}
-                                    <img alt="" class="img-fluid" src="{{ auto_doors.image_tr.url }}">
+                                    {% if LANGUAGE_CODE == "de" %}
+                                    <img alt="" class="img-fluid" src="{{ auto_doors.image_de.url }}">
                                     {% else %}
                                     {% if auto_doors.image_en %}
                                     <img alt="" class="img-fluid" src="{{ auto_doors.image_en.url }}">
                                     {% else %}
-                                    <img alt="" class="img-fluid" src="{{ auto_doors.image_tr.url }}">
+                                    <img alt="" class="img-fluid" src="{{ auto_doors.image_de.url }}">
                                     {% endif %}
                                     {% endif %}
                                 </a>
                             </div>
                             <div class="post-item-description">
-                                {% if LANGUAGE_CODE == 'tr' %}
-                                <p>{{ auto_doors.content_tr|safe }}</p>
+                                {% if LANGUAGE_CODE == 'de' %}
+                                <p>{{ auto_doors.content_de|safe }}</p>
                                 {% else %}
                                <p>{{ auto_doors.content_en|safe }}</p>
                                 {% endif %}
@@ -59,13 +59,13 @@
                                     <!--Box 1-->
                                     {% if auto_doors.spec_file_tr %}
                                     <div class="col-lg-4">
-                                        {% if LANGUAGE_CODE == "tr" %}
+                                        {% if LANGUAGE_CODE == "de" %}
                                         <a target="_blank" href="{% url 'pdf' file=auto_doors.spec_file_tr %}">
                                         {% else %}
                                         {% if auto_doors.spec_file_en %}
                                         <a target="_blank" href="{% url 'pdf' file=auto_doors.spec_file_en %}">
                                             {% else %}
-                                        <a target="_blank" href="{% url 'pdf' file=auto_doors.spec_file_tr %}">
+                                        <a target="_blank" href="{% url 'pdf' file=auto_doors.spec_file_de %}">
 
                                             {% endif %}
                                         {% endif %}
@@ -78,15 +78,15 @@
                                     {% endif %}
                                     <!--End: Box 1-->
                                     <!--Box 2-->
-                                    {% if auto_doors.catalog_file_tr %}
+                                    {% if auto_doors.catalog_file_de %}
                                     <div class="col-lg-4">
-                                        {% if LANGUAGE_CODE == "tr" %}
-                                        <a target="_blank" href="{% url 'pdf' file=auto_doors.catalog_file_tr %}">
+                                        {% if LANGUAGE_CODE == "de" %}
+                                        <a target="_blank" href="{% url 'pdf' file=auto_doors.catalog_file_de %}">
                                         {% else %}
                                         {% if auto_doors.spec_file_en %}
                                         <a target="_blank" href="{% url 'pdf' file=auto_doors.catalog_file_en %}">
                                             {% else %}
-                                        <a target="_blank" href="{% url 'pdf' file=auto_doors.catalog_file_tr %}">
+                                        <a target="_blank" href="{% url 'pdf' file=auto_doors.catalog_file_de %}">
 
                                             {% endif %}
                                         {% endif %}

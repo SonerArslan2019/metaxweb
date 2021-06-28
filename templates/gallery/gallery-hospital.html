@@ -29,7 +29,7 @@
                         <div class="col-md-12">
 
                         <div class="grid-layout grid-3-columns grid-loaded" data-margin="20" data-item="grid-item" data-lightbox="gallery" style="margin: 0px -20px -20px 0px; position: relative; height: 773.949px;">
-                            {% if LANGUAGE_CODE == "tr" %}
+                            {% if LANGUAGE_CODE == "de" %}
                             {% for x in all_objects %}
 
                             <div class="grid-item" style="padding: 0px 20px 20px 0px; position: absolute; left: 753.334px; top: 515.966px;">
@@ -39,7 +39,7 @@
                                 <iframe src="https://www.youtube.com/embed/{{ x.video }}" allowfullscreen>
                                 </iframe>
                                 {% endif %}
-                                <small>{{ x.title_tr }}</small>
+                                <small>{{ x.title_de }}</small>
                             </div>
 
                         {% endfor %}

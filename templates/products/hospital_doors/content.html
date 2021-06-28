@@ -34,20 +34,20 @@
                         <div class="post-item-wrap">
                             <div class="post-image">
                                 <a href="#">
-                                    {% if LANGUAGE_CODE == "tr" %}
-                                    <img alt="" class="img-fluid" src="{{ hospital_doors.image_tr.url }}">
+                                    {% if LANGUAGE_CODE == "de" %}
+                                    <img alt="" class="img-fluid" src="{{ hospital_doors.image_de.url }}">
                                     {% else %}
                                     {% if hospital_doors.image_en %}
                                     <img alt="" class="img-fluid" src="{{ hospital_doors.image_en.url }}">
                                     {% else %}
-                                    <img alt="" class="img-fluid" src="{{ hospital_doors.image_tr.url }}">
+                                    <img alt="" class="img-fluid" src="{{ hospital_doors.image_de.url }}">
                                     {% endif %}
                                     {% endif %}
                                 </a>
                             </div>
                             <div class="post-item-description">
-                                {% if LANGUAGE_CODE == 'tr' %}
-                                <p>{{ hospital_doors.content_tr|safe }}</p>
+                                {% if LANGUAGE_CODE == 'de' %}
+                                <p>{{ hospital_doors.content_de|safe }}</p>
                                 {% else %}
                                <p>{{ hospital_doors.content_en|safe }}</p>
                                 {% endif %}
@@ -57,13 +57,13 @@
                                     <!--Box 1-->
                                     {% if hospital_doors.spec_file_tr %}
                                     <div class="col-lg-4">
-                                        {% if LANGUAGE_CODE == "tr" %}
-                                        <a target="_blank" href="{% url 'pdf' file=hospital_doors.spec_file_tr %}">
+                                        {% if LANGUAGE_CODE == "de" %}
+                                        <a target="_blank" href="{% url 'pdf' file=hospital_doors.spec_file_de %}">
                                         {% else %}
                                         {% if hospital_doors.spec_file_en %}
                                         <a target="_blank" href="{% url 'pdf' file=hospital_doors.spec_file_en %}">
                                             {% else %}
-                                        <a target="_blank" href="{% url 'pdf' file=hospital_doors.spec_file_tr %}">
+                                        <a target="_blank" href="{% url 'pdf' file=hospital_doors.spec_file_de %}">
 
                                             {% endif %}
                                         {% endif %}
@@ -76,15 +76,15 @@
                                     {% endif %}
                                     <!--End: Box 1-->
                                     <!--Box 2-->
-                                        {% if hospital_doors.catalog_file_tr %}
+                                        {% if hospital_doors.catalog_file_de %}
                                     <div class="col-lg-4">
-                                        {% if LANGUAGE_CODE == "tr" %}
-                                        <a target="_blank" href="{% url 'pdf' file=hospital_doors.catalog_file_tr %}">
+                                        {% if LANGUAGE_CODE == "de" %}
+                                        <a target="_blank" href="{% url 'pdf' file=hospital_doors.catalog_file_de %}">
                                         {% else %}
                                         {% if hospital_doors.spec_file_en %}
                                         <a target="_blank" href="{% url 'pdf' file=hospital_doors.catalog_file_en %}">
                                             {% else %}
-                                        <a target="_blank" href="{% url 'pdf' file=hospital_doors.catalog_file_tr %}">
+                                        <a target="_blank" href="{% url 'pdf' file=hospital_doors.catalog_file_de %}">
 
                                             {% endif %}
                                         {% endif %}

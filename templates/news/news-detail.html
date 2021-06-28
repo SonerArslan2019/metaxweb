@@ -43,8 +43,8 @@
 
                                     <span class="post-meta-date"><i class="far fa-calendar"></i>{{ news.date }}</span>
                                 </div>
-                                {% if LANGUAGE_CODE == 'tr' %}
-                                <p>{{ news.content_tr|safe }}</p>
+                                {% if LANGUAGE_CODE == 'de' %}
+                                <p>{{ news.content_de|safe }}</p>
                                 {% else %}
                                <p>{{ news.content_en|safe }}</p>
                                 {% endif %}
@@ -52,7 +52,7 @@
                             <div class="post-navigation">
                                 {% for x in previous_news %}
                                     <a href="{% url 'news-detail' slug=x.slug %}" class="post-prev">
-                                        <div class="post-prev-title"><span>{% trans 'Previous News' %}</span>{% if LANGUAGE_CODE == 'tr' %} {{ x.title_tr }}  {% else %} {{ x.title_en }} {% endif %}</div>
+                                        <div class="post-prev-title"><span>{% trans 'Previous News' %}</span>{% if LANGUAGE_CODE == 'de' %} {{ x.title_de }}  {% else %} {{ x.title_en }} {% endif %}</div>
                                     </a>
                                     {% endfor %}
                                     <a href="{% url 'news' %}" class="post-all">
@@ -60,7 +60,7 @@
             </a>
             {% for x in next_news %}
                                     <a href="{% url 'news-detail' slug=x.slug %}" class="post-next">
-                                        <div class="post-next-title"><span>{% trans 'Next News' %}</span>{% if LANGUAGE_CODE == 'tr' %} {{ x.title_tr }}  {% else %} {{ x.title_en }} {% endif %}</div>
+                                        <div class="post-next-title"><span>{% trans 'Next News' %}</span>{% if LANGUAGE_CODE == 'de' %} {{ x.title_de }}  {% else %} {{ x.title_en }} {% endif %}</div>
                                     </a>
                                      {% endfor %}
                                 </div>
@@ -84,8 +84,8 @@
                                     <div class="post-thumbnail-entry">
                                         <img class="img-fluid" src="{{ x.image.url }}">
                                         <div class="post-thumbnail-content">
-                                            {% if LANGUAGE_CODE == 'tr' %}
-                                            <a href="{% url 'news-detail' slug=x.slug %}">{{ x.title_tr }}</a>
+                                            {% if LANGUAGE_CODE == 'de' %}
+                                            <a href="{% url 'news-detail' slug=x.slug %}">{{ x.title_de }}</a>
                                             {% else %}
                                             <a href="{% url 'news-detail' slug=x.slug %}">{{ x.title_en }}</a>
                                             {% endif %}

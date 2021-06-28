@@ -1,5 +1,5 @@
-# from django.apps import AppConfig
-#
-#
-# class RootConfig(AppConfig):
-#     name = 'root'
+from django.apps import AppConfig
+
+
+class RootConfig(AppConfig):
+    name = 'root'
